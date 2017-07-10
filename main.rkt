@@ -17,10 +17,10 @@
 (serve/servlet start
   #:stateless? #t
   #:listen-ip #f
-  #:port 8000
+  #:port 80
   #:server-root-path (current-directory)
   #:servlet-regexp #px"^/$|^/p/"
   #:command-line? #t
   #:file-not-found-responder file-not-found
-  #:ssl? #t
+  #:ssl? #f
   )
