@@ -1,11 +1,11 @@
-`((p "This is a tough essay to write. Every time I visit hacker news or read anything new about development I get frustrated and annoyed by the ignorance that pervails in software engineering.
+`((p "This is a tough essay to write. Every time I visit hacker news or read anything new about development I get frustrated and annoyed by the ignorance that prevails in software engineering.
 Why?
 Because people are not only reinventing the wheel, but making small languages/frameworks to satisfy their domain needs.
 I say it's a waste of effort to do so.
 Do we really need another framework on top of JS to do one thing better? A framework that won't be composable with other frameworks. It's another metaphoric monkey-wrench in the machine.
 And what about languages? \"Hey guys I made a new language called Leaf\", \"Hey folks I've made a new language called Loop\", \"Hey people ...\"...
 All this effort is wasted. Why?")
-(p "Because these languages make it hard to interoperate with eachother. Their datastructures are wildly different in memory. Their runtime requirements and implementations differ. And their modes of handling memory differ. Now we have a problem. Wanna talk to another language? Just fire up 2 interpreters and let them talk over a socket or pipe. But that provides another problem: creating a communication language over that socket.")
+(p "Because these languages make it hard to interoperate with each other. Their datastructures are wildly different in memory. Their runtime requirements and implementations differ. And their modes of handling memory differ. Now we have a problem. Wanna talk to another language? Just fire up 2 interpreters and let them talk over a socket or pipe. But that provides another problem: creating a communication language over that socket.")
 (p "Ugh. I tell myself. UUUUUGH. WHY?!")
 (p "We all know software devs who work on this are pretty smart. They're driven. They have ambition. Maybe you're one of them. But I'm telling you that you're throwing most of your work and time right out the window by making languages and frameworks.")
 (p (strong "why?!") " you ask")
