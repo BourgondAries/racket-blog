@@ -1,0 +1,34 @@
+`((p "This is a tough essay to write. Every time I visit hacker news or read anything new about development I get frustrated and annoyed by the ignorance that pervails in software engineering.
+Why?
+Because people are not only reinventing the wheel, but making small languages/frameworks to satisfy their domain needs.
+I say it's a waste of effort to do so.
+Do we really need another framework on top of JS to do one thing better? A framework that won't be composable with other frameworks. It's another metaphoric monkey-wrench in the machine.
+And what about languages? \"Hey guys I made a new language called Leaf\", \"Hey folks I've made a new language called Loop\", \"Hey people ...\"...
+All this effort is wasted. Why?")
+(p "Because these languages make it hard to interoperate with eachother. Their datastructures are wildly different in memory. Their runtime requirements and implementations differ. And their modes of handling memory differ. Now we have a problem. Wanna talk to another language? Just fire up 2 interpreters and let them talk over a socket or pipe. But that provides another problem: creating a communication language over that socket.")
+(p "Ugh. I tell myself. UUUUUGH. WHY?!")
+(p "We all know software devs who work on this are pretty smart. They're driven. They have ambition. Maybe you're one of them. But I'm telling you that you're throwing most of your work and time right out the window by making languages and frameworks.")
+(p (strong "why?!") " you ask")
+(p "because there's already a solution and it allows you to communicate seamlessly among languages, without manufacturing difficult protocols.")
+(p (strong "PEOPLE! IT'S LISP") ". And I'm not joking around here. BUT WHY is the question. Because of macros. They allow us to construct little languages inside of lisp that perfectly capture whatever domain you've got.")
+(p "There's ABSOLUTELY no need to construct another language. You can do it in Lisp and it will be nice. And you can talk to other little languages. And the code is debt-free, hell, even \"design patterns\" (which are honestly just a way around a language due to limitations) aren't needed in Lisp.")
+(p "One of the most useful things about macros in Lisp is that they're contextually aware. Just look:"
+	,(to-string
+		(let ([s (open-output-string)])
+			(parameterize ([current-error-port s])
+				(trce (+ 1 2)))
+			(get-output-string s))))
+(p "In a normal program we just write" ,(to-string (trce (+ 1 2))) "but that doesn't show anything here, since trce prints to the standard error port")
+(p "So (trce (+ 1 2)) prints (trce (+ 1 2) = 3). Imagine what we gotta do in nearly all other languages: print(\"1 + 2 = \", 1 + 2) substitute numbers with variables.")
+(p (strong "THAT JUST SUCKS") ". WHY do I need to manually write what I'm printing if it's ALREADY in the expression?!")
+(p (strong "AntiLisper") ": \"Alright, is that the ONLY thing you can show me? Ugh I HATE parentheses. I bet your STUPID logger is the ONLY thing you've got going for ya.")
+(p "Listen here you little shit. You'll get used to the damn parentheses once you realize that Lisp is the greatest fucking language in existence.")
+(p "You know what's cool? We can embed HTML in Lisp: " ,(to-string (response/xexpr #:preamble #"<!DOCTYPE html>" `(html (head (meta ([charset "UTF-8"])))))))
+(p "Obviously I'm not gonna include a bunch of body stuff but you get the idea. Is that all? Fuck no boy, there's a shit tonne to come, ever heard of list-let? No because I just invented it." ,(to-string (list-let '(1 2) (a b) (+ a b))))
+(p "Yeah, it destructures a list into variables. This is not something you can do with a function since it requires bindings in the calling scope.")
+(p (strong "AntiLisper") ": \"WHY do you need that? Hellooooooo... I bet you don't even code real shit.\"")
+(p "Well Helooooo we remove dirty, disgusting duplicate code noise by using this, I mean just imagine mapping lists of lists (counting total number of students in a grade of men and women): " ,(to-string (map (lambda (x) (list-let x (men women) (+ men women))) '((31 28) (20 15) (83 67)))))
+(p (strong "AntiLisper") ": \"Oh yeah? That's dumb, I can do that using a structure and besides I can just use a let myself. Why would I need list-let? Seems redundant.\"")
+(p "Dude seriously look at the equivalent let-version of the code: " ,(to-string (map (lambda (x) (let ([men (first x)] [women (second x)]) (+ men women))) '((31 28) (20 15) (83 67)))) "WAY MORE NOISY! And besides we can do" (strong " EVEN BETTER ") "by removing the redundant lambda (x) part: " ,(to-string (map (lambda-list-let (men women) (+ men women)) '((31 28) (20 15) (83 67)))))
+(p "Look. Code noise plain sucks. Yeah sure you can do everything with lambdas and lets and what-not but it's gonna look noisy, ugly, and you'll spend more time reading and understanding the code. Besides, once you use macros to clean up common patterns you'll see that your code becomes much cleaner and much more concise overall. This DOESN'T MEAN the code becomes hard-to-read. NO! Because a small code SIZE does not imply it's hard to read. Maybe terse languages without macros are hard to read. But using macros makes the code EASIER to read simply because all macros remove noise that'd normally obstruct YOUR understanding.")
+)

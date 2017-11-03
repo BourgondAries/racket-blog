@@ -3,7 +3,7 @@ body.blog { background-color: #f8f8f8; font-family: "Ubuntu", sans-serif; font-s
 
 @media (min-width: 768px) {
 	.blog .cell { display: table-cell; vertical-align: top; }
-	.blog .cell.big-navigation { display: block; vertical-align: top; }
+	.blog .cell.big-navigation { display: block; font-size: 0.8em; vertical-align: top; }
 	.blog .cell.small-navigation { display: none; vertical-align: top; }
 	.blog .table { display: table; overflow-wrap: break-word; table-layout: fixed; width: 100%; }
 	.blog .table-column.auto { display: table-column; width: auto; }

@@ -2,8 +2,8 @@
 
 (provide blog-dispatch file-not-found)
 
-(require (for-syntax racket/list)
-         (for-syntax racket/pretty)
+(require (for-syntax racket/list racket/pretty racket/syntax syntax/parse)
+         "logger.rkt"
          web-server/dispatch
          web-server/servlet
          web-server/servlet-env
@@ -11,6 +11,20 @@
 
 (define-namespace-anchor anchor)
 (define namespace (namespace-anchor->namespace anchor))
+
+(define-syntax (lambda-list-let stx)
+  (syntax-parse stx
+    [(_ (names:id ...+) code:expr ...+)
+     #'(lambda (x) (list-let x (names ...) code ...))]))
+
+(define-syntax (list-let stx)
+  (syntax-parse stx
+    [(self variable:expr (name:id names:id ...+) code:expr ...+)
+     #'(let ([name (first variable)])
+         (self (rest variable) (names ...) code ...))]
+    [(_ variable:expr (name:id) code:expr ...+)
+     #'(let ([name (first variable)])
+         code ...)]))
 
 (define (codify input)
   `(pre ,input))
